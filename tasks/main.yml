@@ -15,5 +15,5 @@
   register: t
 
 - name: Take ownership of /tmp
-  shell: sudo chown {{ user }}:{{ group }} /tmp
+  file: path=/tmp state=directory owner={{ user }} group={{ group }}
   when: take_ownership_of_tmp == "true" and t.stat.pw_name != "{{ user }}"
